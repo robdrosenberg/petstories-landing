@@ -4,7 +4,7 @@
     <div v-if="!submitted" class="md:grid grid-cols-2 gap-16 mt-24 items-center">
       <div>
         <h2 class="text-3xl font-semibold">Get Updates</h2>
-        <form name="pet-stories-email" data-netlify="true" @submit.prevent="submitForm" class="mt-8">
+        <form name="pet-stories-email" data-netlify="true" netlify @submit.prevent="submitForm" class="mt-8">
           <label
             class="flex items-center gap-2 input input-bordered focus-within:outline-none focus-within:ring-0 focus-within:border-primary">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
