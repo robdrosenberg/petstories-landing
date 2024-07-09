@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen">
-    <h1 class="mt-6 text-5xl font-extrabold" :class="{ 'squiggly-underline': submitted }">
+    <h1 class="mt-6 text-6xl font-extrabold" :class="{ 'squiggly-underline': submitted }">
       Pet Stories
     </h1>
     <div v-if="!submitted" class="md:grid grid-cols-2 gap-16 mt-24 items-center">
