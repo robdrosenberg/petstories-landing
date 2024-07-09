@@ -9,11 +9,7 @@
         <form name="pet-stories-email" data-netlify="true" method="POST" netlify data-netlify-honeypot="bot-field"
           @submit.prevent="submitForm" class="mt-8">
           <input type="hidden" name="form-name" value="pet-stories-email" />
-          <p class="hidden">
-            <label>
-              Don't fill this out if you're human: <input name="bot-field" />
-            </label>
-          </p>
+
           <label
             class="flex items-center gap-2 input input-bordered focus-within:outline-none focus-within:ring-0 focus-within:border-primary">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
@@ -22,8 +18,8 @@
               <path
                 d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
             </svg>
-            <input name="email" type="email" placeholder="Email" v-model="email"
-              class="grow bg-transparent border-none focus:outline-none focus:ring-0 w-full" required />
+            <input name="email" type="email" placeholder="Email"
+              class="grow bg-transparent border-none focus:outline-none focus:ring-0 w-full" />
           </label>
           <button type="submit" class="btn btn-primary block mt-4 w-full">
             Submit
@@ -51,36 +47,16 @@ import { ref } from "vue";
 import confetti from "canvas-confetti";
 
 const submitted = ref(false);
-const email = ref("");
 
-const submitForm = async () => {
-  try {
-    const response = await fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        "form-name": "pet-stories-email",
-        email: email.value,
-      }).toString(),
-    });
-
-    if (response.ok) {
-      confetti({
-        particleCount: 200,
-        spread: 80,
-        origin: { y: 0.6 },
-      });
-      submitted.value = true;
-      email.value = "";
-    } else {
-      console.error("Form submission failed");
-    }
-  } catch (error) {
-    console.error("Error submitting form:", error);
-  }
+const submitForm = () => {
+  confetti({
+    particleCount: 200,
+    spread: 80,
+    origin: { y: 0.6 },
+  });
+  submitted.value = true;
 };
 </script>
-
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
