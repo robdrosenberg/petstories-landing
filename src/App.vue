@@ -1,10 +1,15 @@
 <template>
   <div class="min-h-screen">
-    <h1 class="mt-6 text-5xl font-extrabold text-gray-200" :class="{ 'squiggly-underline': submitted }">Pet Stories</h1>
+    <h1 class="mt-6 text-5xl font-extrabold text-gray-200" :class="{ 'squiggly-underline': submitted }">
+      Pet Stories
+    </h1>
     <div v-if="!submitted" class="md:grid grid-cols-2 gap-16 mt-24 items-center">
       <div>
         <h2 class="text-3xl font-semibold">Get Updates</h2>
-        <form name="pet-stories-email" data-netlify="true" netlify @submit.prevent="submitForm" class="mt-8">
+        <form name="pet-stories-email" data-netlify="true" method="POST" netlify data-netlify-honeypot="bot-field"
+          @submit.prevent="submitForm" class="mt-8">
+          <input type="hidden" name="form-name" value="pet-stories-email" />
+
           <label
             class="flex items-center gap-2 input input-bordered focus-within:outline-none focus-within:ring-0 focus-within:border-primary">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
@@ -16,37 +21,41 @@
             <input type="email" placeholder="Email"
               class="grow bg-transparent border-none focus:outline-none focus:ring-0 w-full" />
           </label>
-          <button type="submit" class="btn btn-primary block mt-4 w-full">Submit</button>
+          <button type="submit" class="btn btn-primary block mt-4 w-full">
+            Submit
+          </button>
         </form>
       </div>
-      <img src="/one-liner.jpeg" alt="Pet Image" class="rounded-lg shadow-md w-full h-auto mt-8 md:mt-0">
+      <img src="/one-liner.jpeg" alt="Pet Image" class="rounded-lg shadow-md w-full h-auto mt-8 md:mt-0" />
     </div>
     <transition name="fade">
       <div v-if="submitted" class="md:grid grid-cols-2 gap-16 mt-24 items-center">
         <div>
           <h2 class="text-3xl font-semibold">Thank you for your support! 🎊</h2>
-          <p class="mt-4">You're all set! You'll receive updates from us soon.</p>
+          <p class="mt-4">
+            You're all set! You'll receive updates from us soon.
+          </p>
         </div>
-        <img src="/Mako2.jpeg" alt="Pet Image" class="rounded-lg shadow-md w-full h-auto mt-8 md:mt-0">
+        <img src="/Mako2.jpeg" alt="Pet Image" class="rounded-lg shadow-md w-full h-auto mt-8 md:mt-0" />
       </div>
     </transition>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import confetti from 'canvas-confetti'
+import { ref } from "vue";
+import confetti from "canvas-confetti";
 
-const submitted = ref(false)
+const submitted = ref(false);
 
 const submitForm = () => {
   confetti({
     particleCount: 200,
     spread: 80,
-    origin: { y: 0.6 }
-  })
-  submitted.value = true
-}
+    origin: { y: 0.6 },
+  });
+  submitted.value = true;
+};
 </script>
 <style scoped>
 .fade-enter-active,
